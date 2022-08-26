@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { getAllManagers } = require('./allManagers');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.json());
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
@@ -14,4 +16,9 @@ app.get('/', (_request, response) => {
 
 app.listen(PORT, () => {
   console.log('Online');
+});
+
+app.get('/talker', async (req, res) => {
+const talkers = await getAllManagers();
+return res.status(200).json(talkers);
 });
