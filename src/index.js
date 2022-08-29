@@ -39,3 +39,9 @@ app.post('/login', (req, res) => {
   const login = returnValidateLogin(email, password);
   return res.status(login[0].status).json(login[1].message);
 });
+
+app.post('/talker', async (req, res) => {
+  const talkers = await getAllManagers();
+  talkers.push(req.body);
+  return res.status(200).json(talkers);
+});
