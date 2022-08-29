@@ -18,5 +18,6 @@ const getAllManagers = async () => {
 };
 
 module.exports = {
+  readTalkers,
   getAllManagers,
 };
