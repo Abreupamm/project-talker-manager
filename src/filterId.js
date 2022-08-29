@@ -6,7 +6,7 @@ const getId = async (numberId) => {
   try {
   const talkers = await readTalkers();
   const talker = talkers.filter((item) => item.id === numberId);
-  if (talker.length === 0) {
+    if (talker.length === 0) {
     return mesageError;
   }
   return talker;

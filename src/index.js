@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { getAllManagers } = require('./allManagers');
 const { getId } = require('./filterId');
+const { generateToken } = require('./generateToken');
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,9 +27,13 @@ return res.status(200).json(talkers);
 
 app.get('/talker/:id', async (req, res) => {
   const idFiltered = await getId(JSON.parse(req.params.id));
-  console.log(idFiltered.length);
   if (idFiltered.length !== 1) {
     return res.status(404).json(idFiltered);
   }
   return res.status(200).json(idFiltered[0]);
+});
+
+app.post('/login', (req, res) => {
+  const token = { token: generateToken() };
+  return res.status(200).json(token);
 });
