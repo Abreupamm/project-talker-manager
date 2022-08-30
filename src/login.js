@@ -1,6 +1,6 @@
 // https://www.horadecodar.com.br/2020/09/13/como-validar-email-com-javascript/
 
-const { generateToken } = require('./generateToken');
+const { generateToken } = require('./assistant');
 
 const emailValidation = (email) => {
   if (!email) {
