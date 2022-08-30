@@ -8,6 +8,7 @@ const { ageValidation } = require('../middlewares /manager/ageValidation');
 const { talkValidation } = require('../middlewares /manager/talkValidation');
 const { watchedAtValidation } = require('../middlewares /manager/watchedAtValidation');
 const { rateValidation } = require('../middlewares /manager/rateValidation');
+const { tokenValidation } = require('../middlewares /manager/tokenValidation');
 
 const talkerRouter = express.Router();
 
@@ -17,6 +18,7 @@ talkerRouter.get('/talker', async (req, res) => {
   });
   
   talkerRouter.post('/talker',
+  tokenValidation,
     nameValidation,
     ageValidation,
     talkValidation,
