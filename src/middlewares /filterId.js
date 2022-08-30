@@ -1,4 +1,4 @@
-const { readTalkers } = require('./allManagers');
+const { readTalkers } = require('../server');
 
 const mesageError = { message: 'Pessoa palestrante não encontrada' };
 

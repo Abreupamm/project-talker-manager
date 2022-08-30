@@ -10,12 +10,4 @@ const generateToken = () => {
   return result;
 };
 
-// const existingField = (item) => {
-//   if (!item) {
-//     return {
-//       message: `O campo "${[item]}" é obrigatório`,
-//     };
-//   } 
-// };
-
 module.exports = { generateToken };

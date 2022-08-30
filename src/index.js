@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { getAllManagers } = require('./allManagers');
-const { getId } = require('./filterId');
-const { returnValidateLogin } = require('./login');
+const { getAllManagers } = require('./server');
+const { getId } = require('./middlewares /filterId');
+const { returnValidateLogin } = require('./server');
+const { returnValidateManager } = require('./server');
 
 const app = express();
 app.use(bodyParser.json());
@@ -43,5 +44,7 @@ app.post('/login', (req, res) => {
 app.post('/talker', async (req, res) => {
   const talkers = await getAllManagers();
   talkers.push(req.body);
-  return res.status(200).json(talkers);
+  const result = returnValidateManager(req.body);
+  // console.log(result);
+  return res.status(result.status).json({ message: result.message });
 });
