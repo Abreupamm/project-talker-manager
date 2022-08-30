@@ -1,19 +1,13 @@
-const nameValidation = (name) => {
-  const status = 400;
-  if (!name) {
-    return {
-      status,
-      message: { message: 'O campo "name" é obrigatório' },
-    };
+const nameValidation = (req, res, next) => {
+  const { name } = req.body;
+    if (!name) {
+    return res.status(400).json({ message: 'O campo "name" é obrigatório' });
   } 
   const size = name.toString();
   if (size.length < 3) {
-    return {
-      status,
-      message: { message: 'O "name" deve ter pelo menos 3 caracteres' },
-    };
+    return res.status(400).json({ message: 'O "name" deve ter pelo menos 3 caracteres' });
   }
-  return 'valid';
+  next();
 };
 
 module.exports = {

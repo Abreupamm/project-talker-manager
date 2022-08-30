@@ -1,10 +1,6 @@
 const fs = require('fs').promises;
 const { join } = require('path');
 
-const { nameValidation } = require('./middlewares /manager/nameValidation');
-const { ageValidation } = require('./middlewares /manager/ageValidation');
-const { talkValidation } = require('./middlewares /manager/talkValidation');
-
 const pathTalkers = './talker.json';
 
 const readTalkers = async () => {
@@ -27,7 +23,7 @@ const writeTalkes = async (file) => {
 };
 
 const createTalker = async (talk) => {
-  const talkers = await readTalkers();
+  const talkers = await getAllManagers();
   const newTalker = {
     id: talkers.length + 1,
     ...talk,
@@ -37,24 +33,8 @@ const createTalker = async (talk) => {
     return newTalker;
 };
 
-const returnValidateManager = async (manager) => {
-  const nameManager = nameValidation(manager.name);
-  const ageManager = ageValidation(manager.age);
-  const talkManager = talkValidation(manager.talk);
-  const valitationList = [nameManager, ageManager, talkManager];
-  const result = valitationList.filter((item) => item !== 'valid');
-  if (result.length === 0) {
-    const newTalker = await createTalker(manager);
-    return {
-      status: 201,
-      message: newTalker,
-    };
-  }
-  return result[0];
-};
-
 module.exports = {
   readTalkers,
   getAllManagers,
-  returnValidateManager,
+  createTalker,
 };
