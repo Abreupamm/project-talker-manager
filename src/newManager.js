@@ -27,3 +27,38 @@ const ageValidation = (age) => {
   }
   return 'valid name';
 };
+
+const talkValidation = (talk) => {
+  if (!talk) {
+    return {
+      message: 'O campo "talk" é obrigatório',
+    };
+  } 
+  if (talk.watcherAt && talk.rate) {
+    return 'valid talk';
+  }
+  return 'invalid talk';
+};
+
+const watchedAtValidation = (watchedAt) => {
+  if (!watchedAt) {
+    return {
+      message: 'O campo "watchedAt" é obrigatório',
+    };
+  } 
+  const isValidDate = Date.parse(watchedAt);
+  console.log(isValidDate);
+};
+
+const rateValifadion = (rate) => {
+  if (!rate) {
+    return {
+      message: 'O campo "watchedAt" é obrigatório',
+    };
+  } 
+  if (rate < 6) {
+    return {
+      message: 'O campo "rate" deve ser um inteiro de 1 à 5';
+    }
+  }
+};
