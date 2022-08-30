@@ -1,8 +1,7 @@
 const rateValidation = (rate) => {
-  const status = 400;
   if (!rate) {
     return {
-      status,
+      status: 400,
       message: { message: 'O campo "rate" é obrigatório' },
     };
   } 
@@ -10,7 +9,7 @@ const rateValidation = (rate) => {
     return 'valid';
   }
   return {
-    status,
+    status: 400,
     message: { message: 'O campo "rate" deve ser um inteiro de 1 à 5' },
   };
 };

@@ -1,16 +1,13 @@
-const passwordValidation = (password) => {
+const passwordValidation = (req, res, next) => {
+  const { password } = req.body;
   if (!password) {
-    return {
-      message: 'O campo "password" é obrigatório',
-    };
+    return res.status(400).json({ message: 'O campo "password" é obrigatório' });
   }
-const size = password.toString();
-if (size.length < 6) {
-  return {
-    message: 'O "password" deve ter pelo menos 6 caracteres',
-  };
-}
-return 'valid password';
+  const size = password.toString();
+  if (size.length < 6) {
+    return res.status(400).json({ message: 'O "password" deve ter pelo menos 6 caracteres' });
+  }
+  next();
 };
 
 module.exports = {

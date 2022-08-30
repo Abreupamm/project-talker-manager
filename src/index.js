@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { getAllManagers } = require('./server');
 const { getId } = require('./middlewares /filterId');
-const { returnValidateLogin } = require('./server');
+// const { returnValidateLogin } = require('./server');
 const { returnValidateManager } = require('./server');
+const loginRouter = require('./routes/loginRoutes');
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,17 +35,18 @@ app.get('/talker/:id', async (req, res) => {
   return res.status(200).json(idFiltered[0]);
 });
 
-app.post('/login', (req, res) => {
-  const { email } = req.body;
-  const { password } = req.body;
-  const login = returnValidateLogin(email, password);
-  return res.status(login[0].status).json(login[1].message);
-});
+app.use(loginRouter);
+
+// app.post('/login', (req, res) => {
+//   const { email } = req.body;
+//   const { password } = req.body;
+//   const login = returnValidateLogin(email, password);
+//   return res.status(login[0].status).json(login[1].message);
+// });
 
 app.post('/talker', async (req, res) => {
   const talkers = await getAllManagers();
   talkers.push(req.body);
   const result = await returnValidateManager(req.body);
-  // console.log(result);
   return res.status(result.status).json(result.message);
 });
