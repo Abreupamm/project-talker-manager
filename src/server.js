@@ -37,4 +37,5 @@ module.exports = {
   readTalkers,
   getAllManagers,
   createTalker,
+  writeTalkes,
 };
