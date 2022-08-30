@@ -3,7 +3,7 @@ const watchedAtValidation = (watchedAt) => {
   if (!watchedAt) {
     return {
       status,
-      message: 'O campo "watchedAt" é obrigatório',
+      message: { message: 'O campo "watchedAt" é obrigatório' },
     };
   } 
   return 'valid';

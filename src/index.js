@@ -44,7 +44,7 @@ app.post('/login', (req, res) => {
 app.post('/talker', async (req, res) => {
   const talkers = await getAllManagers();
   talkers.push(req.body);
-  const result = returnValidateManager(req.body);
+  const result = await returnValidateManager(req.body);
   // console.log(result);
-  return res.status(result.status).json({ message: result.message });
+  return res.status(result.status).json(result.message);
 });

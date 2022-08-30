@@ -3,14 +3,14 @@ const nameValidation = (name) => {
   if (!name) {
     return {
       status,
-      message: 'O campo "name" é obrigatório',
+      message: { message: 'O campo "name" é obrigatório' },
     };
   } 
   const size = name.toString();
   if (size.length < 3) {
     return {
       status,
-      message: 'O "name" deve ter pelo menos 3 caracteres',
+      message: { message: 'O "name" deve ter pelo menos 3 caracteres' },
     };
   }
   return 'valid';

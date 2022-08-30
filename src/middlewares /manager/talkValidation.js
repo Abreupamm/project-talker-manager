@@ -3,7 +3,7 @@ const talkValidation = (talk) => {
   if (!talk) {
     return {
       status,
-      message: 'O campo "talk" é obrigatório',
+        message: { message: 'O campo "talk" é obrigatório' },
     };
   } 
   if (talk.watchedAt && talk.rate) {
@@ -11,7 +11,7 @@ const talkValidation = (talk) => {
   }
   return {
     status,
-    message: 'campo talk deverá ser um objeto com as chaves watchedAt e rate',
+      message: { message: 'campo talk deverá ser um objeto com as chaves watchedAt e rate' },
   };
 };
 

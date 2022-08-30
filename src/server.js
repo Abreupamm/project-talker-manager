@@ -5,8 +5,8 @@ const { validateLogin } = require('./middlewares /login/validateLogin');
 const { nameValidation } = require('./middlewares /manager/nameValidation');
 const { ageValidation } = require('./middlewares /manager/ageValidation');
 const { talkValidation } = require('./middlewares /manager/talkValidation');
-const { rateValidation } = require('./middlewares /manager/rateValidation');
-const { watchedAtValidation } = require('./middlewares /manager/watchedAtValidation');
+// const { rateValidation } = require('./middlewares /manager/rateValidation');
+// const { watchedAtValidation } = require('./middlewares /manager/watchedAtValidation');
 
 const pathTalkers = './talker.json';
 
@@ -51,22 +51,23 @@ const createTalker = async (talk) => {
   };
   talkers.push(newTalker);
   writeTalkes(talkers);
-  return newTalker;
+    return newTalker;
 };
 
-const returnValidateManager = (manager) => {
+const returnValidateManager = async (manager) => {
   const nameManager = nameValidation(manager.name);
   const ageManager = ageValidation(manager.age);
   const talkManager = talkValidation(manager.talk);
-  const watchedAtManager = watchedAtValidation(manager.talk.watchedAt);
-  const rateManager = rateValidation(manager.talk.rate);
-  const valitationList = [nameManager, ageManager, talkManager, watchedAtManager, rateManager];
+  // const watchedAtManager = watchedAtValidation(manager.talk.watchedAt);
+  // const rateManager = rateValidation(manager.talk.rate);
+  const valitationList = [nameManager, ageManager, talkManager];
   const result = valitationList.filter((item) => item !== 'valid');
   if (result.length === 0) {
-    createTalker(manager);
-    return {
+    const newTalker = await createTalker(manager);
+    console.log(newTalker);
+        return {
       status: 201,
-      message: manager,
+      message: newTalker,
     };
   }
   return result[0];
