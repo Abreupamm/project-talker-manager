@@ -51,4 +51,13 @@ async (req, res) => {
   return res.status(200).json(update);
 });
 
+talkerIdRouter.delete('/talker/:id', tokenValidation, async (req, res) => {
+  const { id } = req.params;
+  const talkers = await getAllManagers();
+  const index = talkers.findIndex((talker) => talker.id === Number(id));
+  talkers.splice(index, 1);
+  writeTalkes(talkers);
+  return res.status(204).end();
+});
+
 module.exports = talkerIdRouter;
