@@ -1,7 +1,6 @@
 const express = require('express');
-const { readTalkers } = require('../server');
-const { getAllManagers } = require('../server');
-const { writeTalkes } = require('../server');
+const { getAllManagers } = require('../assistant');
+const { writeTalkes } = require('../assistant');
 
 const { tokenValidation } = require('../middlewares /manager/tokenValidation');
 const { nameValidation } = require('../middlewares /manager/nameValidation');
@@ -15,7 +14,7 @@ const talkerIdRouter = express.Router();
 talkerIdRouter.get('/talker/:id', async (req, res) => {
   const messageErro = { message: 'Pessoa palestrante não encontrada' };
   try {
-    const talkers = await readTalkers();
+    const talkers = await getAllManagers();
     const talker = talkers.filter((item) => item.id === JSON.parse(req.params.id));
       if (talker.length === 0) {
         return res.status(404).json(messageErro);

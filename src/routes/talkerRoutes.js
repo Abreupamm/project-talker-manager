@@ -1,7 +1,7 @@
 const express = require('express');
 
-const { getAllManagers } = require('../server');
-const { createTalker } = require('../server');
+const { getAllManagers } = require('../assistant');
+const { createTalker } = require('../assistant');
 
 const { nameValidation } = require('../middlewares /manager/nameValidation');
 const { ageValidation } = require('../middlewares /manager/ageValidation');

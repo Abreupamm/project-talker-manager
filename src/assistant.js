@@ -33,9 +33,17 @@ const createTalker = async (talk) => {
     return newTalker;
 };
 
+const getQuerySearch = async (query) => {
+  const talkers = await getAllManagers();
+  const result = talkers.filter((talker) => talker.name.includes(query));
+  console.log(result);
+  return result;
+};
+
 module.exports = {
   readTalkers,
   getAllManagers,
   createTalker,
   writeTalkes,
+  getQuerySearch,
 };
